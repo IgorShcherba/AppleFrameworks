@@ -12,22 +12,17 @@ struct FrameworkGridView: View {
 
     var body: some View {
         NavigationView {
-            ScrollView {
-                LazyVGrid(columns: viewModel.columns) {
-                    ForEach(MockData.frameworks) { framework in
+            List {
+                ForEach(MockData.frameworks) { framework in
+
+                    NavigationLink(destination: FrameworkDetailView(framework: viewModel.selectedFramework ?? MockData.sampleFramework, isShowingDetailView: $viewModel.isShowingDetailView)) {
                         FrameworkTitleView(framework: framework)
-                            .onTapGesture {
-                                print("dcsd")
-                                viewModel.selectedFramework = framework
-                            }
                     }
                 }
             }
             .navigationTitle("Apple frameworks")
-            .fullScreenCover(isPresented: $viewModel.isShowingDetailView) {
-                FrameworkDetailView(framework: viewModel.selectedFramework!, isShowingDetailView: $viewModel.isShowingDetailView)
-            }
         }
+        .accentColor(Color(.label))
     }
 }
 

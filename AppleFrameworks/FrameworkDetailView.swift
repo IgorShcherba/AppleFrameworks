@@ -13,7 +13,6 @@ struct FrameworkDetailView: View {
     @State var isShowingSafariView = false
 
     var body: some View {
-        XDismissButtonView(isOpen: $isShowingDetailView)
         Spacer()
 
         FrameworkTitleView(framework: framework)
